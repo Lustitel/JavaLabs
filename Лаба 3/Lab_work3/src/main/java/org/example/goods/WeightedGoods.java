@@ -7,14 +7,17 @@ public class WeightedGoods extends Goods
 // Весовой товар хранит название и описание.
 {
     double weight;
-
+    String name;
     public WeightedGoods(String user_name_Goods, String user_option_Goods, double user_weight) {
         super(user_name_Goods, user_option_Goods);
         if(weight < 0 ) throw new IllegalArgumentException("Масса должна быть положительной");
         else this.weight = user_weight;
+        this.name = user_name_Goods;
     }
 
     public double getWeight() {return weight;}
+
+    public String getWeight_Name(){return name;}
 
     @Override
     public boolean equals(Object o) {

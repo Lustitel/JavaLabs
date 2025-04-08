@@ -7,11 +7,11 @@ class PaymentTest {
     // Проверяем корректное создание объекта с валидными данными
     @Test
     void testValidInput() {
-        Payment payment = new Payment("Васильев Пал Палыч", 15, 5, 2007, 10000);
+        Payment payment = new Payment("Васильев Пал Палыч", 15, 5, 2024, 10000);
         assertEquals("Васильев Пал Палыч", payment.getfullName());
         assertEquals(15, payment.getpayment_date());
         assertEquals(5, payment.getMonth());
-        assertEquals(2007, payment.getYear());
+        assertEquals(2024, payment.getYear());
         assertEquals(10000, payment.getPayment_amount());
     }
 
@@ -58,7 +58,7 @@ class PaymentTest {
     //Проверяем выброс исключений при установке некорректных значений через сеттеры
     @Test
     void testSettersWithInvalidValues() {
-        Payment payment = new Payment("Васильев Пал Палыч", 15, 5, 2007, 10000);
+        Payment payment = new Payment("Васильев Пал Палыч", 15, 5, 2024, 10000);
 
         assertThrows(IllegalArgumentException.class, () -> payment.setfullName(""));
         assertThrows(IllegalArgumentException.class, () -> payment.setPayment_date(0));
@@ -70,9 +70,9 @@ class PaymentTest {
     //Проверяем корректную работу equals() и hashCode()
     @Test
     void testEqualsAndHashCode() {
-        Payment payment1 = new Payment("Васильев Пал Палыч", 15, 5, 2007, 10000);
-        Payment payment2 = new Payment("Васильев Пал Палыч", 15, 5, 2007, 10000);
-        Payment payment3 = new Payment("Васильев Михаил Андреич", 15, 5, 2007, 10000);
+        Payment payment1 = new Payment("Васильев Пал Палыч", 15, 5, 2024, 10000);
+        Payment payment2 = new Payment("Васильев Пал Палыч", 15, 5, 2024, 10000);
+        Payment payment3 = new Payment("Васильев Михаил Андреич", 15, 5, 2024, 10000);
 
         assertEquals(payment1, payment2); // объекты с одинаковыми данными равны
         assertEquals(payment1.hashCode(), payment2.hashCode()); // и хэши тоже равны
@@ -82,7 +82,7 @@ class PaymentTest {
     //Проверяем правильность формирования строки в методе toString()
     @Test
     void testToString() {
-        Payment payment = new Payment("Васильев Пал Палыч", 15, 5, 2007, 12345);
-        assertEquals("Платит[Имя: Васильев Пал Палыч, Дата: 15.5.2007, Сумма: 123руб.45коп.]", payment.toString());
+        Payment payment = new Payment("Васильев Пал Палыч", 15, 5, 2024, 12345);
+        assertEquals("Платит[Имя: Васильев Пал Палыч, Дата: 15.5.2024, Сумма: 123руб.45коп.]", payment.toString());
     }
 }

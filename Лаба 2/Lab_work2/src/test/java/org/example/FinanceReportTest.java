@@ -8,20 +8,24 @@ public class FinanceReportTest {
 
     private Payment payment1;
     private Payment payment2;
+    private Payment payment3;
+    private Payment payment4;
     private Payment[] payments;
 
     @BeforeEach
     void setUp() {
         payment1 = new Payment("Васильев Пал Палыч", 10, 3, 2024, 15000);
         payment2 = new Payment("Решко Елена Николаевна", 15, 3, 2024, 20000);
-        payments = new Payment[]{payment1, payment2};
+        payment3 = new Payment("Васильев Пал Олегович", 14, 2, 2024, 15000);
+        payment4 = new Payment("Решко Елена Владимировна", 11, 4, 2024, 20000);
+        payments = new Payment[]{payment1, payment2, payment3, payment4};
     }
 
     // Тест конструктора с корректными данными
     @Test
     void testValidConstructor() {
         FinanceReport report = new FinanceReport(payments, "Сидоров Сидор Сидорович", 1, 3, 2024);
-        assertEquals(2, report.getLengthPayments());
+        assertEquals(4, report.getLengthPayments());
     }
 
     // Тест конструктора с некорректным массивом платежей (null)
@@ -59,11 +63,21 @@ public class FinanceReportTest {
         assertEquals(original.getIndexPayments(0), copy.getIndexPayments(0)); // Проверяем, что значения одинаковые
     }
 
+    @Test
+    void testCopyConstructorWithDifValue() {
+        FinanceReport original = new FinanceReport(payments, "Плательщик", 28, 3, 2024);
+        FinanceReport copy = new FinanceReport(original);
+
+        assertNotSame(original, copy); // Проверяем, что это разные объекты
+        assertNotSame(original.getIndexPayments(0), copy.getIndexPayments(0)); // Проверяем, что массив скопирован глубоко
+        assertEquals(original.getIndexPayments(0), copy.getIndexPayments(0)); // Проверяем, что значения одинаковые
+    }
+
     // Тест получения количества платежей
     @Test
     void testGetLengthPayments() {
         FinanceReport report = new FinanceReport(payments, "Плательщик", 1, 1, 2024);
-        assertEquals(2, report.getLengthPayments());
+        assertEquals(4, report.getLengthPayments());
     }
 
     // Тест получения платежа по индексу
@@ -100,10 +114,13 @@ public class FinanceReportTest {
     // Тест метода toString
     @Test
     void testToString() {
-        FinanceReport report = new FinanceReport(payments, "Плательщик", 1, 1, 2024);
+        FinanceReport report = new FinanceReport(payments, "Пиклз", 1, 1, 2024);
         String result = report.toString();
-        assertTrue(result.contains("Плательщик: Плательщик"));
+        assertTrue(result.contains("Автор: Пиклз"));
         assertTrue(result.contains("Платит[Имя: Васильев Пал Палыч"));
         assertTrue(result.contains("Платит[Имя: Решко Елена Николаевна"));
+        assertTrue(result.contains("Платит[Имя: Васильев Пал Олегович"));
+        assertTrue(result.contains("Платит[Имя: Решко Елена Владимировна"));
+        System.out.println(result);
     }
 }

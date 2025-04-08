@@ -52,7 +52,7 @@ public class FinanceReport
                 );
 
             }
-            if(obj.getLengthPayments() <=-1) throw new IllegalArgumentException("Ожидалось что длина массива будет полоительна!");
+            if(obj.getLengthPayments() <=-1) throw new IllegalArgumentException("Ожидалось что длина массива будет положительна!");
             else this.payments = new_payments;
 
             if(obj.getfullName_creator_payments() == null || obj.getfullName_creator_payments().isEmpty()) throw new IllegalArgumentException("Строчка должна быть не null и не быть пустой!");
@@ -111,11 +111,15 @@ public class FinanceReport
         for(Payment i: payments)
         {
             if(i == null) throw new NullPointerException("Массив не может быть не инициализирован и его длина должна быть больше 0!");
-            else str_payments.append(i);
+            else {
+                str_payments.append(i);
+                str_payments.append("\n");
+            }
         }
         return "[Автор: " + this.fullName_creator_payments + '\'' +
                 ", дата: " + this.payment_date +'.' + this.month +'.' + this.year +
-                ", Платежи: [ \n" + str_payments +
-                "]";
+                ", Платежи:  \n" + str_payments +
+                "]";//ВОТКНУТЬ ПРАВИЛЬНЫЙЙ ПЕРЕНОС СТРОКИ
     }
+
 }

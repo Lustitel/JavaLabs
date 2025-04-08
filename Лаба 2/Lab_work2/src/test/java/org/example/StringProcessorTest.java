@@ -6,6 +6,12 @@ class StringProcessorTest {
     private final StringProcessor stringProcessor = new StringProcessor(); // исправлено
 
     @Test
+    void SP_EmptyString() {
+        String res = stringProcessor.StringCopy("", 1);
+        assertEquals("", res);
+    }
+
+    @Test
     void SP_zeroString() {
         String res = stringProcessor.StringCopy("Skibidi", 0);
         assertEquals("", res);
@@ -26,6 +32,12 @@ class StringProcessorTest {
     void CSIF_NormalCount() {  // исправлено имя метода
         int res = stringProcessor.CountSecondInFirst("Chia seed, Will seed", "seed");
         assertEquals(2, res);
+    }
+
+    @Test
+    void CSIF_NormalCount2() {  // исправлено имя метода
+        int res = stringProcessor.CountSecondInFirst("ababababa", "aba");
+        assertEquals(4, res);
     }
 
     @Test
@@ -95,6 +107,13 @@ class StringProcessorTest {
     @Test
     void DS_OneSymbol() {
         StringBuilder sb = new StringBuilder("1");
+        stringProcessor.DeleteSecond(sb);
+        assertEquals("1", sb.toString());
+    }
+
+    @Test
+    void DS_TwoSymbols() {
+        StringBuilder sb = new StringBuilder("12");
         stringProcessor.DeleteSecond(sb);
         assertEquals("1", sb.toString());
     }

@@ -2,7 +2,7 @@ package org.example.filter;
 
 public class EndStringFilter implements Filter {
     //Проверка, что строка заканчивается на определенную подстроку.
-    private String pattern;
+    private final String pattern;
 
     //  При создании объекта класса конструктор получает на вход и сохраняет строку pattern.
     public EndStringFilter(String pattern) {

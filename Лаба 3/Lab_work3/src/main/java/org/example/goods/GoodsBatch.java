@@ -10,12 +10,10 @@ public class GoodsBatch
     private final List<PackedPieceGoods> PackedPieceGoodss; // Список упакованных штучных товаров
     private final List<PackedWeightedGoods> PackedWeightedGoods; // Список упакованных весовых товаров
 
-    public GoodsBatch(String description, List<PackedPieceGoods> PackedPieceGoodss, List<PackedWeightedGoods> PackedWeightedGoods)
-    //конструктор по произвольному набору упаковок товаров,
-    {
+    public GoodsBatch(String description, List<PackedPieceGoods> PackedPieceGoodss, List<PackedWeightedGoods> PackedWeightedGoods) {
         if (description == null || description.isEmpty()) throw new IllegalArgumentException("Описание партии товаров не может быть пустым.");
-        if (PackedPieceGoodss == null || PackedPieceGoodss.isEmpty()) throw new NullPointerException("Список упакованных товаров не может быть null.");
-        if (PackedWeightedGoods == null || PackedWeightedGoods.isEmpty()) throw new NullPointerException("Список упакованных весовых товаров не может быть null.");
+        if (PackedPieceGoodss == null) throw new NullPointerException("Список упакованных товаров не может быть null.");
+        if (PackedWeightedGoods == null) throw new NullPointerException("Список упакованных весовых товаров не может быть null.");
         this.description = description;
         this.PackedPieceGoodss = PackedPieceGoodss;
         this.PackedWeightedGoods = PackedWeightedGoods;
@@ -27,10 +25,14 @@ public class GoodsBatch
 
     public List<PackedPieceGoods> getPackedPieceGoodss() {return PackedPieceGoodss;}
 
+    public static double round(double value) {
+        return Math.round(value * 1000.0) / 1000.0;
+    }
+
     public double getTotalGrossMass()
     // получить массу всей партии (суммарная масса брутто всех товаров в партии).
     {
-        double totalGrossMass = 0;
+        double totalGrossMass = 0.0;
 
         // Считаем массу брутто для упакованных штучных товаров
         if (PackedPieceGoodss != null) {
@@ -45,7 +47,7 @@ public class GoodsBatch
             }
         }
 
-        return totalGrossMass;
+        return round(totalGrossMass);
     }
 
     @Override

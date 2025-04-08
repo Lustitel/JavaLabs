@@ -44,7 +44,6 @@ public class FinanceReportProcessor
             }
         }
 
-
         try {
             valuePayments = FinanceReportProcessor.getPaymentsChar(new_report, '\u0000');
         } catch (Exception e) {
