@@ -176,7 +176,6 @@ class ListDemoTest {
     @Test
     void testEmptyList() {
         List<Human> humans = new ArrayList<>();
-
         assertThrows(IllegalArgumentException.class, () -> {ListDemo.elderStudentsList(humans);});
     }
     //Test task 5 end;
