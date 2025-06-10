@@ -37,6 +37,7 @@ public class BinStream {
     public static void readIntArray(Reader reader, int[] array) throws IOException {
         try (BufferedReader br = new BufferedReader(reader)) {
             String line = br.readLine();
+            if (line == null || line.isEmpty()) return;
             String[] parts = line.split(" ");
             for (int i = 0; i < array.length && i < parts.length; i++) {array[i] = Integer.parseInt(parts[i]);}
         }

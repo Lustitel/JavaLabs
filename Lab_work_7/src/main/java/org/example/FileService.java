@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.util.Arrays;
 import java.util.List;
 
+// Класс для получения списка файлов с заданным расширением в указанной директории
 public class FileService {
     public static List<String> getFilesByExtension(String directory, String extension) {
         File dir = new File(directory);
@@ -12,6 +13,5 @@ public class FileService {
         String[] files = dir.list(filter);
         if (files != null) return Arrays.asList(files);
         return List.of();
-
     }
 }
